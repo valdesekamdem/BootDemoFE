@@ -1,0 +1,42 @@
+<h2>Patients</h2>
+
+<div class="container">
+  <form role="form" ng-submit="addPatient()">
+    <div class="row">
+      <div class="form-group">
+        <input type="text" ng-model="patient.name" placeholder="Patient name" class="form-control">
+        <br>
+        <input type="text" ng-model="patient.adress" placeholder="Patient Address" class="form-control">
+        <br>
+        <input type="submit" class="btn btn-primary pull-right" value="Submit">
+        <br>
+      </div>
+    </div>
+  </form>
+</div>
+
+<hr>
+
+<table class="table table-condensed table-responsive table-striped table-hover">
+  <tr>
+    <th>id</th>
+    <th>Name</th>
+    <th>Address</th>
+  </tr>
+  <tr ng-repeat="patient in patients">
+    <td>{{patient.id}}</td>
+    <td>{{patient.name}}</td>
+    <td>{{patient.adress}}</td>
+  </tr>
+</table>
+<ul class="nav nav-pills">
+  <li ng-class="{active:$index==currentPage}" class="clickable" ng-repeat="p in pages track by $index">
+    <a ng-click="gotoPage($index)">{{$index}}</a>
+  </li>
+</ul>
+<!--<p class="input-group" ng-repeat="todo in todos">
+  <input type="text" ng-model="todo" class="form-control"/>
+  <span class="input-group-btn">
+    <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+  </span>
+</p>-->
