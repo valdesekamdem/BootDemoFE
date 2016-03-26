@@ -1,7 +1,7 @@
 <h2>Patients</h2>
 
 <div class="container">
-  <form role="form" ng-submit="addPatient()">
+  <form role="form" ng-submit="savePatient()">
     <div class="row">
       <div class="form-group">
         <input type="text" ng-model="patient.name" placeholder="Patient name" class="form-control">
@@ -22,11 +22,16 @@
     <th>id</th>
     <th>Name</th>
     <th>Address</th>
+    <th>Actions</th>
   </tr>
   <tr ng-repeat="patient in patients">
     <td>{{patient.id}}</td>
     <td>{{patient.name}}</td>
     <td>{{patient.adress}}</td>
+    <td>
+      <button class="btn btn-warning btn-sm glyphicon glyphicon-edit" ng-click="update($index)"></button>
+      <button class="btn btn-danger btn-sm glyphicon glyphicon-remove" ng-click="delete(patient.id)"></button>
+    </td>
   </tr>
 </table>
 <ul class="nav nav-pills">

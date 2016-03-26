@@ -6,16 +6,26 @@
 angular.module('demoApp')
   .factory('Patient', function($http) {
     var service = [];
-    var url = "http://"+document.location.hostname+":8080";
+    var url = "http://"+document.location.hostname+":8080/api/patients";
 
     //load patients
     service.getAll = function(page) {
-      return $http.get(url+"/api/patients/"+ page)
+      return $http.get(url+"/"+ page)
     };
 
     // Save a new patient
     service.save = function(patient) {
-      return $http.post(url+"/api/patients", patient);
+      return $http.post(url, patient);
+    };
+
+    // Update a patient
+    service.update = function(patient) {
+      return $http.put(url, patient);
+    };
+
+    // delete a patient
+    service.delete = function(id) {
+      return $http.delete(url+"/" + id);
     };
 
     return service;
