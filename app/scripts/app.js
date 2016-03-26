@@ -34,6 +34,11 @@ angular
         templateUrl: 'views/patient/patient.html',
         controller: 'PatientCtrl'
       })
+      .when('/consultations', {
+        templateUrl: 'views/consultationroute.html',
+        controller: 'ConsultationrouteCtrl',
+        controllerAs: 'ConsultationRoute'
+      })
       .otherwise({
         redirectTo: '/'
       });
