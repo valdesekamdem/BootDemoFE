@@ -15,12 +15,6 @@ angular.module('demoApp')
     $scope.currentConsultationPage = 0;
     $scope.consultation = {};
 
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
     $scope.loadConsultations = function() {
       ConsultationService.getAll($scope.currentConsultationPage).success(function(data) {
         $scope.consultations = data.content;
@@ -50,13 +44,32 @@ angular.module('demoApp')
       $('#myModal').modal('toggle')
     };
 
-    $scope.addConsultation = function() {
-      ConsultationService.save($scope.consultation).success(function(data) {
-        $scope.loadConsultations();
-        $scope.consultation = {};
-      });
-    }
+    var onSaveFinished = function(result) {
+      $scope.loadConsultations();
+      $scope.consultation = {};
+    };
+
+    /*Create a new consultation if the consultation id is empty
+     Else update the existing consultation*/
+    $scope.saveConsultation = function() {
+      if ($scope.consultation.id === null) {
+        ConsultationService.save($scope.consultation).success(onSaveFinished);
+      } else {
+        ConsultationService.update($scope.consultation).success(onSaveFinished);
+      }
+    };
 
     $scope.loadConsultations();
 
+    $scope.update = function(index) {
+      $scope.consultation = angular.copy($scope.consultations[index]);
+    };
+
+    var onDeleteFinished = function() {
+      $scope.loadConsultations();
+    };
+
+    $scope.delete = function(id) {
+      ConsultationService.delete(id).success(onDeleteFinished)
+    };
   });

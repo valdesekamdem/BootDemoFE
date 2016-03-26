@@ -4,9 +4,9 @@
   <form role="form" ng-submit="savePatient()">
     <div class="row">
       <div class="form-group">
-        <input type="text" ng-model="patient.name" placeholder="Patient name" class="form-control">
+        <input type="text" ng-model="patient.name" placeholder="Patient name" class="form-control" required>
         <br>
-        <input type="text" ng-model="patient.adress" placeholder="Patient Address" class="form-control">
+        <input type="text" ng-model="patient.adress" placeholder="Patient Address" class="form-control" required>
         <br>
         <input type="submit" class="btn btn-primary pull-right" value="Submit">
         <br>
